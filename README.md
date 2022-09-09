@@ -1,7 +1,21 @@
 # ginDemo
 
-#go mod tidy
+## Installation
 
-#go build main.go
+To install dependency:
 
-#go run main.go
+```bash
+go mod tidy
+```
+
+## Build
+
+```bash
+go build main.go
+```
+
+## Run
+
+```bash
+go run main.go
+```
