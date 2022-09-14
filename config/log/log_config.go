@@ -37,6 +37,8 @@ func InitLogConfig() {
 		TimestampFormat: "2006-01-02 15:04:05",
 	})
 	// 设置日志级别为Info以上
+	//InfoLevel
+	//DebugLevel
 	log.SetLevel(log.InfoLevel)
 }
 
