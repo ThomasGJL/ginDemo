@@ -10,7 +10,11 @@ type UserService interface {
 
 	SelectAllUsers() []dao.User
 
-	StoreUser() *dao.User
+	StoreUser(nuser dao.User) *dao.User
+
+	UpdateUser(userId int, cuser dao.User) *dao.User
+
+	DeleteUser(userId int, duser dao.User) *dao.User
 }
 
 type UserServiceImpl struct {
@@ -30,8 +34,35 @@ func (UserServiceImpl) SelectAllUsers() []dao.User {
 	return userList
 }
 
-func (UserServiceImpl) StoreUser() *dao.User {
+func (UserServiceImpl) StoreUser(nuser dao.User) *dao.User {
 	user := &dao.User{}
-	user.StoreUser()
+	user.StoreUser(nuser)
 	return user
+}
+
+func (UserServiceImpl) UpdateUser(userId int, cuser dao.User) *dao.User {
+	user := &dao.User{}
+	user.SelectById(userId)
+	if user.Id == 0 {
+		user = nil
+		log.Error("user not found")
+	} else {
+		user.UpdateUser(cuser)
+	}
+
+	return user
+}
+
+func (UserServiceImpl) DeleteUser(userId int, duser dao.User) *dao.User {
+
+	user := &dao.User{}
+	user.SelectById(userId)
+	if user.Id == 0 {
+		user = nil
+		log.Error("user not found")
+	} else {
+		user.DeleteUser(duser)
+	}
+
+	return nil
 }
